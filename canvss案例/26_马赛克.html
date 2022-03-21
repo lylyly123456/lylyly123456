@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>马赛克</title>
+</head>
+<body>
+<canvas id="myCanvas1" width="500" height="500" style="border: #CF1013 solid">
+</canvas>
+<script>
+var canvas = document.getElementById('myCanvas1');//找到画布这个元素,获取id
+var context = canvas.getContext("2d");
+
+var imageData = context.createImageData(500, 500);//图像对象，多大
+var pixels = imageData.data; 
+ 
+// 定义行和列
+var numTileRows = 16; 
+var numTileCols = 16; 
+// 每个小方块的宽高
+var tileWidth = imageData.width/numTileCols; 
+var tileHeight = imageData.height/numTileRows;
+// 循环遍历每一个小方块 
+for (var r = 0; r < numTileRows; r++) 
+{
+	for (var c = 0; c < numTileCols; c++) 
+	{
+			
+		var red = Math.floor(Math.random()*255); 
+		var green = Math.floor(Math.random()*255); 
+		var blue = Math.floor(Math.random()*255); 
+		// 对每一行操作
+		for (var tr = 0; tr < tileHeight; tr++)
+		{
+			//单独的小方块
+			for (var tc = 0; tc < tileWidth; tc++){ 
+			// 转换为以0开始的像素位置坐标（x，y）
+				var trueX = (c*tileWidth)+tc; 
+				var trueY = (r*tileHeight)+tr;
+				var pos = (trueY*(imageData.width*4))+(trueX*4); 
+				pixels[pos] = red; 
+				pixels[pos+1] = green; 
+				pixels[pos+2] = blue; 
+				pixels[pos+3] = 255;
+
+
+			};
+		};
+	};
+};
+context.putImageData(imageData, 0, 0);
+</script>
+</body>
+</html>

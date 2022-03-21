@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>30条直线组成的花型</title>
+</head>
+
+<body>
+  <canvas id="triangle" height="500" width="500"></canvas>
+  <script>
+  
+   var c=document.getElementById("triangle");//找到画布元素
+   var ctx=c.getContext("2d");//找到2d环境
+   //定义变量
+   var n=0;
+   var dx=150;
+   var dy=150;
+   var s=100;
+   var x=Math.sin(0);
+   var y=Math.cos(0);
+   var dig=11*Math.PI/29;
+
+   ctx.beginPath();//开始路径
+   ctx.fillStyle="#eeeeff";//设置图形的填充颜色
+  
+
+   for(var i=0;i<30;i++){
+    var x=Math.sin(i*dig);
+    var y=Math.cos(i*dig);
+    ctx.lineTo(dx+x*s,dy+y*s);
+   }
+ ctx.closePath();
+   
+   ctx.fill();//填充当前图像路径，默认颜色时黑色
+   ctx.stroke();//绘制路径，颜色默认是黑色
+
+  </script>
+</body>
+</html>

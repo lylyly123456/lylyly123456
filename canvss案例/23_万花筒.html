@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>万花筒</title>
+</head>
+<body>
+<canvas id="001" width="500" height="500" style="border: 1px solid #fff000"></canvas>
+
+<script type="text/javascript">
+	var canvas=document.getElementById("001");//找到画布元素
+	var cobj=canvas.getContext("2d");//找到2d环境
+
+	
+	var arr=[];//定义一个数组
+
+	setInterval(//定义定时器方法
+	function(){
+		cobj.clearRect(0,0,600,600);//清除画布
+		for(var i=0;i<arr.length;i++){
+			cobj.save();//将当前状态保存成快照
+			cobj.translate(300,300);//移动到300，300像素
+			cobj.scale(arr[i].scale,arr[i].scale);//改变大小，尺寸
+			cobj.rotate(arr[i].angle*Math.PI/180);//旋转坐标轴
+			cobj.beginPath();//开始一个路径
+			cobj.fillStyle=arr[i].color;//填充颜色，只是先填充上颜色但并没有显示出来
+			cobj.rect(arr[i].num,arr[i].num,30,30);//绘制一个正方形
+			cobj.fill();//将已经填充好颜色的图形显示出来
+			cobj.restore();//恢复到保存快照时的状态
+			}
+	}
+	,60)
+
+
+	setInterval(function(){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i].num<0){
+				arr.splice(i,1);//删除当前的元素
+				continue;//退出当前循环
+			}
+			arr[i].angle+=2;
+			arr[i].num-=0.2;
+			arr[i].scale-=0.002;
+			if(arr[i].scale<=0.2){
+				arr[i].scale=0.2;
+			}
+
+		}
+
+	},60)
+	setInterval(
+	function(){
+		var rect={angle:0,num:150,scale:1,color:"rgb("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+")"};
+		arr.push(rect);
+	}
+
+
+		,1000)
+
+</script>
+</body>
+</html>

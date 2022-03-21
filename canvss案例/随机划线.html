@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机画线</title>
+</head>
+<body>
+	<canvas id="randomline" width="500" height="500" style="border: 1px solid #fff000" ></canvas>
+<script>
+var count=0;
+function draw(){
+    var canvas = document.getElementById('randomline');//找到画布元素
+    if (!canvas.getContext) return;//判断是否存在2d环境
+    var ctx = canvas.getContext("2d");//找到2d环境
+    //定义变量
+    var x = Math.floor(Math.random()*500);
+    var y = Math.floor(Math.random()*500);
+    var x1 =Math.floor(Math.random()*500);
+    var y1 = Math.floor(Math.random()*500);
+    var r = Math.floor(Math.random()*255);
+    var g = Math.floor(Math.random()*255);
+    var b = Math.floor(Math.random()*255);
+    ctx.beginPath();
+    ctx.moveTo(x,y);//定义线条的开始坐标
+    ctx.lineTo(x1,y1);//定义线条的结束坐标
+    ctx.strokeStyle = 'rgb('+r+','+g+','+b+')';//设置随机的图形轮廓的颜色
+    ctx.lineWidth = Math.floor(Math.random()*5); //设置随机线宽
+    ctx.stroke();//绘制路径，颜色默认是黑色
+	
+   ctx.closePath();
+count++;
+if(count==30)
+clearInterval(timer);//清除画布
+}
+ var timer=setInterval(draw,200);//定义定时器
+ 
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>方块转动</title>
+</head>
+<body>
+<canvas id="001" width="500" height="500" style="border: 1px solid #fff000"></canvas>
+<button type="button"  onclick="status()">开始</button>
+<script type="text/javascript">
+	var playAnimation = true;
+	var locx =100;//x初始值
+	var locy =100;//y初始值
+	var angle =0;//角度
+	var radiuds=50;//圆的弧
+	var x=0;
+	var y=0;//初始值
+	var canvas=document.getElementById("001");//找到画布元素
+	var context=canvas.getContext("2d");//找到2d环境
+	
+	function animate(){
+		if (playAnimation) {
+		draw();
+		setTimeout(animate,33);
+		angle = angle+0.1;//度数每次加0.1
+	}
+};
+animate();
+function status(){//停止
+	if (playAnimation) {
+		playAnimation=false;
+	}else
+	{
+		playAnimation=true;
+		animate();
+	}
+
+}
+
+function draw(){//画
+	var cos =Math.cos(angle);
+	var sin=Math.sin(angle);
+	const x =Math.floor(radiuds*cos)+locx;
+	const y =Math.floor(radiuds*sin)+locy;
+	context.clearRect(0,0,500,500);
+	context.fillRect(x,y,5,5);
+}
+
+</script>
+</body>
+</html>
