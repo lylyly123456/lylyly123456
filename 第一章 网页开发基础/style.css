@@ -1,6 +1,0 @@
-/*定义标题标记居中对齐*/
-h2{ text-align:center; color:blue;}
-/*定义div标记样式*/
-div{ border: 1px solid red; width: 400px; height: 100px; color:green;}
-
-/*<div>标记就是一个区块容器标记*/
