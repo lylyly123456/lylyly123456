@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自由落体</title>
+</head>
+<body>
+<canvas id="myCanvas1" width="500" height="500" style="border: #CF1013 solid">
+</canvas>
+<script>
+var c=document.getElementById("myCanvas1");
+var ctx=c.getContext("2d");
+var width=500,height=500,y=50;
+//定时器setInterval(函数，间隔时间)
+var timer=setInterval(function(){
+	ctx.fillStyle="yellow";
+	ctx.clearRect(0,0,width,height);//clearRect(矩形左上角的 x 坐标,y 坐标,宽度,高度)清空给定矩形内的指定像素。
+	ctx.fillRect(100,y++,50,50);//fillRect()绘制“已填色”的矩形
+    if(y>500){
+           //当y大于画布长时正方形结束往下落
+    	clearInterval(timer);
+    }
+},5)
+/*var timer=setInterval(函数名，间隔时间)
+if(条件){
+	clearinterval(timer);
+}*/
+/*ctx.closePath();
+ctx.stroke();*/
+</script>
+</body>
+</html>

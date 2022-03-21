@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+		
+	</head>
+
+	<body>
+		
+		<div>
+		<button id="startAnimation">Start</button>
+		<button id="stopAnimation"> Stop </button>
+		</div>
+		
+		
+		<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+		您的浏览器不支持 HTML5 canvas 标签。
+		</canvas>
+		<script>
+			// 获取宽高
+			var canvas = $("#myCanvas"); 
+			var context = canvas.get(0).getContext("2d"); 
+			var canvasWidth = canvas.width(); 
+			var canvasHeight = canvas.height(); 
+			// 设置一个开始停止标记
+			var playAnimation = true; 
+			 
+			var startButton = $("#startAnimation"); 
+			var stopButton = $("#stopAnimation"); 
+			 // 隐藏停止图标
+			startButton.hide(); 
+			//点击开始
+			startButton.click(function() { 
+			// 开始图标隐藏
+			$(this).hide();
+			 // 暂停图标显示
+			stopButton.show(); 
+			 // 标记改变
+			playAnimation = true; 
+			animate(); 
+			}); 
+			 
+			stopButton.click(function() { 
+			$(this).hide(); 
+			startButton.show(); 
+			 
+			playAnimation = false; 
+			}); 
+			//该动画对象（类）是一个形状（Shape），然后我们提取Shape的一些基本属性
+			 
+			var Shape = function(x, y, width, height) { 
+			this.x = x; 
+			this.y = y; 
+			this.width = width; 
+			this.height = height; 
+			}; 
+			//产生随机形状,需要更改Shape类来定义形状的宽度和高度
+			var shapes = new Array(); 
+		
+			for (var i = 0; i < 10; i++) {         
+			var x = Math.random()*250; 
+			var y = Math.random()*250; 
+			var width = height = Math.random()*30; 
+			shapes.push(new Shape(x, y, width, height)); 
+			}; 
+			 //将这些形状从数组中取出来并更新它们的位置（使它们产生动画效果），然后绘制这些形状
+			function animate() { 
+			context.clearRect(0, 0, canvasWidth, canvasHeight); 
+			var shapesLength = shapes.length; 
+			for (var i = 0; i < shapesLength; i++) { 
+			var tmpShape = shapes[i]; 
+			tmpShape.x++;
+			context.fillRect(tmpShape.x, tmpShape.y, tmpShape.width, 
+			tmpShape.height); 
+			}; 
+			 
+			if (playAnimation) { 
+				//x++;
+			setTimeout(animate, 33); 
+			}; 
+			}; 
+			 
+			animate(); 
+		</script>
+	</body>
+</html>

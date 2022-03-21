@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<canvas id="myCanvas1" width="500" height="500" style="border: #CF1013 solid">
+</canvas>
+<script>
+	function draw(){
+    var canvas = document.getElementById('myCanvas1');
+    if (!canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    //两个for循环嵌套，先循环行，再循环列
+    for (var i = 0; i < 6; i++){
+        for (var j = 0; j < 6; j++){
+            ctx.strokeStyle = `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+            ctx.strokeRect(j * 50, i * 50, 40, 40);
+        }
+    }
+}
+draw();
+/**
+ 返回随机的 [from, to] 之间的整数(包括from，也包括to)
+ */
+function randomInt(from, to){
+    //0-255之间的数、parseInt() 函数可解析一个字符串，并返回一个整数。
+    return parseInt(Math.random() * (to - from + 1) + from);
+}
+</script>
+
+</body>
+</html>

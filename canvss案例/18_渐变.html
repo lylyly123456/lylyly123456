@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>填充颜色方格</title>
+</head>
+<body>
+<canvas id="myCanvas1" width="500" height="500" style="border: #CF1013 solid">
+</canvas>
+<script>
+  //自定义函数draw()
+  function draw(){
+  var canvas = document.getElementById('myCanvas1');
+  if (!canvas.getContext) return;
+  var ctx = canvas.getContext("2d");
+
+  for (var i = 0; i < 6; i++){
+    for (var j = 0; j < 6; j++){
+      ctx.fillStyle = 'rgb(' + Math.floor(245 - 47 * i) + ',' +
+        Math.floor(245 - 47 * j) + ',0)';// floor()：一律舍去，仅保留整数
+      ctx.fillRect(j * 50, i * 50, 50, 50);//所有左上角的坐标开始填充，大小为50
+    }
+  }
+}
+draw();//执行函数
+</script>
+</body>
+</html>
